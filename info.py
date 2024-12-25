@@ -61,6 +61,10 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 VERIFY = bool(environ.get('VERIFY', False))
 HOWTOVERIFY = environ.get('HOWTOVERIFY', 'https://t.me/c/2041246768/241')
 
+# Referral and Premium settings
+REFERRAL_BONUS = int(environ.get('REFERRAL_BONUS', 1))  # Number of referrals needed for premium
+PREMIUM_DURATION = int(environ.get('PREMIUM_DURATION', 30))  # Duration of premium access in days
+
 # Others
 SHORTLINK_URL = environ.get('SHORTLINK_URL', 'api.shareus.io')
 SHORTLINK_API = environ.get('SHORTLINK_API', 'PUIAQBIFrydvLhIzAOeGV8yZppu2')
