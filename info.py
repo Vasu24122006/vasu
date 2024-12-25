@@ -1,6 +1,6 @@
 import re
-from os import environ, getenv
-from Script import script
+from os import environ,getenv
+from Script import script 
 
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
@@ -15,71 +15,67 @@ def is_enabled(value, default):
 SESSION = environ.get('SESSION', 'Media_search')
 API_ID = int(environ.get('API_ID', '28055923'))
 API_HASH = environ.get('API_HASH', '4903d5ebbf5f4b7edcf0ff82293e58d7')
-BOT_TOKEN = environ.get('BOT_TOKEN', "your_bot_token")
+BOT_TOKEN = environ.get('BOT_TOKEN', "7608165956:AAHYZ9qJKwGst9J0ZtQJMw7C1VAmGwS227s")
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
-PICS = (environ.get('PICS', 'https://envs.sh/5oN.jpg https://vault.pictures/p/b132fa143dac406a880cbe4e22f8d3de https://envs.sh/5o9.jpg https://envs.sh/5os.jpg https://envs.sh/5oL.jpg')).split()
+PICS = (environ.get('PICS', 'https://envs.sh/5oN.jpg https://vault.pictures/p/b132fa143dac406a880cbe4e22f8d3de https://envs.sh/5o9.jpg https://envs.sh/5os.jpg https://envs.sh/5oL.jpg')).split() #SAMPLE PIC
 NOR_IMG = environ.get("NOR_IMG", "https://vault.pictures/p/b132fa143dac406a880cbe4e22f8d3de")
 MELCOW_VID = environ.get("MELCOW_VID", "https://envs.sh/5or.mp4")
 SPELL_IMG = environ.get("SPELL_IMG", "https://envs.sh/5oL.jpg")
 SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://envs.sh/5o9.jpg'))
 CODE = (environ.get('CODE', 'https://envs.sh/5oN.jpg'))
 
-# Stream link shortener
-STREAM_SITE = environ.get('STREAM_SITE', 'api.shareus.io')
-STREAM_API = environ.get('STREAM_API', 'PUIAQBIFrydvLhIzAOeGV8yZppu2')
-STREAMHTO = environ.get('STREAMHTO', 'https://t.me/c/2041246768/241')
+#stream link shortner
+STREAM_SITE = (environ.get('STREAM_SITE', 'api.shareus.io'))
+STREAM_API = (environ.get('STREAM_API', 'PUIAQBIFrydvLhIzAOeGV8yZppu2'))
+STREAMHTO = (environ.get('STREAMHTO', 'https://t.me/c/2041246768/241'))
 
 # Admins, Channels & Users
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '6102951142').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002155332774').split()]
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002155332774').split()] #Channel id for auto indexing ( make sure bot is admin )
 auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
 PREMIUM_USER = [int(user) if id_pattern.search(user) else user for user in environ.get('PREMIUM_USER', '').split()]
-
-# Update to handle multiple channels
-auth_channels = environ.get('AUTH_CHANNELS', '-1001998307024 -1001234567890').split()  # Add multiple channel IDs here
-AUTH_CHANNELS = [int(channel) for channel in auth_channels if id_pattern.search(channel)]
-
+auth_channel = environ.get('AUTH_CHANNEL', '-1001998307024') #Channel / Group Id for force sub ( make sure bot is admin )
 auth_grp = environ.get('AUTH_GROUP', '-1002077433895')
+AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
-support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1002149303924')
-reqst_channel = environ.get('REQST_CHANNEL_ID', '-1002168300949')
+support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1002149303924') # support group id ( make sure bot is admin )
+reqst_channel = environ.get('REQST_CHANNEL_ID', '-1002168300949') # request channel id ( make sure bot is admin )
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
-NO_RESULTS_MSG = bool(environ.get("NO_RESULTS_MSG", False))
+NO_RESULTS_MSG = bool(environ.get("NO_RESULTS_MSG", False)) # True if you want no results messages in Log Channel
 
-# MongoDB information
-DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://your_mongodb_uri")
+# MongoDB information 
+# https://youtu.be/qFB0cFqiyOM?si=QGuFSZ7qhxl4VTrA
+
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://vasu24122006:%40Vasu2412@cluster0.w3cmc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Verify/token system
-VERIFY = bool(environ.get('VERIFY', False))
-HOWTOVERIFY = environ.get('HOWTOVERIFY', 'https://t.me/c/2041246768/241')
-
-# Referral and Premium settings
-REFERRAL_BONUS = int(environ.get('REFERRAL_BONUS', 1))  # Number of referrals needed for premium
-PREMIUM_DURATION = int(environ.get('PREMIUM_DURATION', 30))  # Duration of premium access in days
+VERIFY = bool(environ.get('VERIFY', False)) # Verification On ( True ) / Off ( False )
+# HOWTOVERIFY = environ.get('HOWTOVERIFY', url='https://t.me/Ultroid_Official/18') 
+HOWTOVERIFY = environ.get('HOWTOVERIFY', 'https://t.me/c/2041246768/241') # How to open tutorial link for verification
 
 # Others
 SHORTLINK_URL = environ.get('SHORTLINK_URL', 'api.shareus.io')
 SHORTLINK_API = environ.get('SHORTLINK_API', 'PUIAQBIFrydvLhIzAOeGV8yZppu2')
-IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', False))
+IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', False))  # else--> True
 DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '0').split()]
 MAX_B_TN = environ.get("MAX_B_TN", "5")
 MAX_BTN = is_enabled((environ.get('MAX_BTN', "True")), True)
 PORT = environ.get("PORT", "8080")
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+2-WMgGIaqG5lNjk1')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/BhediyaTheater')
-TUTORIAL = environ.get('TUTORIAL', 'https://t.me/Ultroid_Official/18')
+TUTORIAL = environ.get('TUTORIAL', 'https://t.me/Ultroid_Official/18') # Tutorial video link for opening shortlink website 
 IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', False))
 MSG_ALRT = environ.get('MSG_ALRT', 'ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : BhediyaTheater')
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002038476381'))
-SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'https://t.me/+S8c_boO9JhA2YjQ1')
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002038476381')) #Log channel id ( make sure bot is admin )
+SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'https://t.me/+S8c_boO9JhA2YjQ1') #Support group link ( make sure bot is admin )
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
 IMDB = is_enabled((environ.get('IMDB', "False")), False)
 AUTO_FFILTER = is_enabled((environ.get('AUTO_FFILTER', "True")), True)
@@ -94,16 +90,18 @@ MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
 INDEX_REQ_CHANNEL = int(environ.get('INDEX_REQ_CHANNEL', LOG_CHANNEL))
 FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '-1002155332774')).split()]
 MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "False")), True)
-PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
+PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False) #forwoding /sharing
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
 LANGUAGES = ["malayalam", "", "tamil", "", "english", "", "hindi", "", "telugu", "", "kannada", "", "gujarati", "", "marathi", "", "punjabi", ""]
 
-SEASONS = ["season 1", "season 2", "season 3", "season 4", "season 5", "season 6", "season 7", "season 8", "season 9", "season 10"]
+SEASONS = ["season 1" , "season 2" , "season 3" , "season 4", "season 5" , "season 6" , "season 7" , "season 8" , "season 9" , "season 10"]
 
 QUALITIES = ["360P", "", "480P", "", "720P", "", "1080P", "", "1440P", "", "2160P", ""]
 
-# FQDN
+# FQDN = ex. => ttoken-78-cdadf96c95a8.herokuapp.com  (remove 'https://' ttoken-78-cdadf96c95a8.herokuapp.com '/' )
+
+# Online Stream and Download
 PORT = int(environ.get('PORT', 8080))
 NO_PORT = bool(environ.get('NO_PORT', False))
 APP_NAME = None
@@ -121,24 +119,31 @@ WORKERS = int(environ.get('WORKERS', '4'))
 SESSION_NAME = str(environ.get('SESSION_NAME', 'LazyBot'))
 MULTI_CLIENT = False
 name = str(environ.get('name', 'LazyPrincess'))
-PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))
-HAS_SSL = bool(getenv('HAS_SSL', False))
+PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
+if 'DYNO' in environ:
+    ON_HEROKU = True
+    APP_NAME = str(getenv('APP_NAME'))
+
+else:
+    ON_HEROKU = False
+HAS_SSL=bool(getenv('HAS_SSL',False))
 if HAS_SSL:
     URL = "https://{}/".format(FQDN)
 else:
     URL = "http://{}/".format(FQDN)
-BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "")).split()))
+BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "")).split())) 
 OWNER_USERNAME = ""
 
-# Add premium logs channel id
+
+# add premium logs channel id
 PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '-1002005924756'))
 
-LOG_STR = "Current Customized Configurations are:-\n"
+LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += ("IMDB Results are enabled, Bot will be showing imdb details for you queries.\n" if IMDB else "IMBD Results are disabled.\n")
-LOG_STR += ("P_TTI_SHOW_OFF found, Users will be redirected to send /start to Bot PM instead of sending file file directly\n" if P_TTI_SHOW_OFF else "P_TTI_SHOW_OFF is disabled files will be send in PM, instead of sending start.\n")
-LOG_STR += ("SINGLE_BUTTON is Found, filename and files size will be shown in a single button instead of two separate buttons\n" if SINGLE_BUTTON else "SINGLE_BUTTON is disabled, filename and file_size will be shown as different buttons\n")
+LOG_STR += ("P_TTI_SHOW_OFF found , Users will be redirected to send /start to Bot PM instead of sending file file directly\n" if P_TTI_SHOW_OFF else "P_TTI_SHOW_OFF is disabled files will be send in PM, instead of sending start.\n")
+LOG_STR += ("SINGLE_BUTTON is Found, filename and files size will be shown in a single button instead of two separate buttons\n" if SINGLE_BUTTON else "SINGLE_BUTTON is disabled , filename and file_sixe will be shown as different buttons\n")
 LOG_STR += (f"CUSTOM_FILE_CAPTION enabled with value {CUSTOM_FILE_CAPTION}, your files will be send along with this customized caption.\n" if CUSTOM_FILE_CAPTION else "No CUSTOM_FILE_CAPTION Found, Default captions of file will be used.\n")
-LOG_STR += ("Long IMDB storyline enabled." if LONG_IMDB_DESCRIPTION else "LONG_IMDB_DESCRIPTION is disabled, Plot will be shorter.\n")
+LOG_STR += ("Long IMDB storyline enabled." if LONG_IMDB_DESCRIPTION else "LONG_IMDB_DESCRIPTION is disabled , Plot will be shorter.\n")
 LOG_STR += ("Spell Check Mode Is Enabled, bot will be suggesting related movies if movie not found\n" if SPELL_CHECK_REPLY else "SPELL_CHECK_REPLY Mode disabled\n")
 LOG_STR += (f"MAX_LIST_ELM Found, long list will be shortened to first {MAX_LIST_ELM} elements\n" if MAX_LIST_ELM else "Full List of casts and crew will be shown in imdb template, restrict them by adding a value to MAX_LIST_ELM\n")
 LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
